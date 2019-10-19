@@ -1,0 +1,28 @@
+1.查询" 01 "课程比" 02 "课程成绩高的学生的信息及课程分数 
+
+SELECT *
+FROM (SELECT *,SC.score FROM Student s INNER JOIN SC ON s.SId=SC.SId AND SC.CId='01') AS s1,
+(SELECT *,SC.score FROM Student s INNER JOIN SC ON s.SId=SC.SId AND SC.CId='02') AS s2
+WHERE s1.SId=s2.SId AND s1.score>s2.score
+
+1.1 查询同时存在" 01 "课程和" 02 "课程的情况 
+
+SELECT *
+FROM (SELECT *,SC.score FROM Student s INNER JOIN SC ON s.SId=SC.SId AND SC.CId='01') AS s1,
+(SELECT *,SC.score FROM Student s INNER JOIN SC ON s.SId=SC.SId AND SC.CId='02') AS s2
+WHERE s1.SId=s2.SId
+
+1.2 查询存在" 01 "课程但可能不存在" 02 "课程的情况(不存在时显示为 null )
+
+SELECT *
+FROM (SELECT *,SC.score FROM Student s INNER JOIN SC ON s.SId=SC.SId AND SC.CId='01') AS s1 LEFT JOIN
+(SELECT *,SC.score FROM Student s INNER JOIN SC ON s.SId=SC.SId AND SC.CId='02') AS s2
+ON s1.SId=s2.SId
+
+1.3 查询不存在" 01 "课程但存在" 02 "课程的情况
+
+SELECT *
+FROM (SELECT *,SC.score FROM Student s INNER JOIN SC ON s.SId=SC.SId AND SC.CId='01') AS s1 RIGHT JOIN
+(SELECT *,SC.score FROM Student s INNER JOIN SC ON s.SId=SC.SId AND SC.CId='02') AS s2
+ON s1.SId=s2.SId
+WHERE s1.CId IS NULL
