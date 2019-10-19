@@ -1,0 +1,5 @@
+查询学过「张三」老师授课的同学的信息
+
+SELECT Student.*
+FROM Course INNER JOIN Teacher INNER JOIN SC INNER JOIN Student
+ON Course.TId=Teacher.TId AND Teacher.Tname="张三" AND SC.CId=Course.CId AND SC.SId=Student.SId
