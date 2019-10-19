@@ -6,3 +6,9 @@ FROM Student s1 LEFT JOIN
 	FROM SC
 	GROUP BY SId) AS s2
 ON S1.SId=S2.SId
+
+4.1查有成绩的学生信息
+
+SELECT *
+FROM Students
+WHERE Student.SId IN (SELECT DISTINCT SId FROM SC)
