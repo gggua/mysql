@@ -1,0 +1,8 @@
+4.查询所有同学的学生编号、学生姓名、选课总数、所有课程的总成绩(没成绩的显示为null)
+
+SELECT s1.SId,s1.Sname,s2.sum_courses,s2.sum_scores
+FROM Student s1 LEFT JOIN
+	(SELECT SId,COUNT(SId) AS sum_courses,SUM(score) AS sum_scores
+	FROM SC
+	GROUP BY SId) AS s2
+ON S1.SId=S2.SId
