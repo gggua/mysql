@@ -1,1 +1,5 @@
+查询「李」姓老师的数量
 
+SELECT COUNT(*)
+FROM Teacher
+WHERE Teacher.Tname LIKE "李%"
