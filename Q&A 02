@@ -1,0 +1,6 @@
+2.查询平均成绩大于等于 60 分的同学的学生编号和学生姓名和平均成绩
+
+SELECT s.SId,s.Sname,s2.avg_score
+FROM Student s INNER JOIN
+  (SELECT SId,AVG(score) AS avg_score FROM SC GROUP BY SId HAVING avg_score>=60) AS s2
+ON s.SId=s2.SId
