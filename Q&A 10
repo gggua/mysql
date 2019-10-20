@@ -1,0 +1,7 @@
+查询没学过"张三"老师讲授的任一门课程的学生姓名
+
+SELECT Sname 
+FROM Student 
+WHERE SID NOT IN (SELECT SID FROM SC WHERE CID IN
+		(SELECT CID FROM Course INNER JOIN Teacher
+		ON Course.TId=Teacher.TId AND Teacher.Tname="张三"))
