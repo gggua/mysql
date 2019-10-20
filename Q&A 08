@@ -1,0 +1,6 @@
+查询至少有一门课与学号为" 01 "的同学所学相同的同学的信息
+
+SELECT Student.*
+FROM Student
+WHERE Student.SId IN(SELECT DISTINCT SC.SId FROM SC,(SELECT CId FROM SC WHERE SC.SId="01" AS c_01)
+			WHERE SC.SId!="01" AND SC.CID=c_01.CId)
