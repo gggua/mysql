@@ -1,0 +1,7 @@
+查询和" 01 "号的同学学习的课程完全相同的其他同学的信息
+
+SELECT Student.*
+FROM Student
+WHERE Student.SId IN (SELECT SId FROM SC 
+		WHERE SId <>"01" AND GROUP_CONCAT(CId)=(SELECT GROUP_CONCAT(CId) FROM SC WHERE SId="01")
+)
