@@ -1,0 +1,8 @@
+查询没有学全所有课程的同学的信息
+
+SELECT Student.*
+FROM Student
+WHERE Student.SId NOT IN (SELECT SId
+			FROM SC
+			GROUP BY SId
+			HAVING COUNT(SId)=(SELECT COUNT(CId) FROM Course))
