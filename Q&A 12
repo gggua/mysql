@@ -1,0 +1,6 @@
+检索" 01 "课程分数小于 60，按分数降序排列的学生信息
+
+SELECT s.*,SC.score
+FROM Student s,SC
+WHERE s.SId=SC.SId AND SC.score<60 AND SC.CId="01"
+ORDER BY SC.score DESC
