@@ -1,0 +1,6 @@
+查询两门及其以上不及格课程的同学的学号，姓名及其平均成绩
+
+SELELT s.SId,s.Sname,AVG(c.score)
+FROM Student s,SC c
+WHERE s.SId=c.SId AND s.SId IN
+(SELECT SId FROM SC WHERE score<60 GROUP BY SId HAVING COUNT(*)>=2)
