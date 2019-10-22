@@ -1,0 +1,7 @@
+按各科成绩进行排序，并显示排名， Score 重复时保留名次空缺
+
+SELECT sc1.score,COUNT(sc2.score) AS RANK
+FROM SC sc1 LEFT JOIN SC sc2
+WHERE sc1.CId=sc2.CId AND sc2.score>sc1.score
+GROUP BY sc1.CId,sc1.SId,sc1.score
+ORDER BY sc1.CId,rank
