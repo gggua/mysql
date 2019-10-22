@@ -1,0 +1,5 @@
+查询各科成绩前三名的记录
+
+SELECT * FROM SC
+WHERE(COUNT(*) FROM SC s WHERE s.score>SC.score)<3
+ORDER BY SC.CId,SC.score DESC
