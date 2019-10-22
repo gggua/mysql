@@ -1,0 +1,19 @@
+查询各科成绩最高分、最低分和平均分：
+以如下形式显示：课程 ID，课程 name，最高分，最低分，平均分，及格率，中等率，优良率，优秀率
+及格为>=60，中等为：70-80，优良为：80-90，优秀为：>=90
+要求输出课程号和选修人数，查询结果按人数降序排列，若人数相同，按课程号升序排列
+
+SELECT SC.SId 课程号,
+	c.Cname 课程名,
+	MAX(SC.score) 最高分,
+	MIN(SC.score) 最低分,
+	ROUND(AVG(SC.score),2) 平均分,
+	COUNT(SC.score) 选修人数,
+	ROUND(COUNT(CASE WHEN SC.score>=60 THEN 1 ELSE 0 END)/COUNT(SC.score), 2) 及格率,
+	ROUND(COUNT(CASE WHEN SC.score>=70 AND SC.score<80 THEN 1 ELSE 0 END)/COUNT(SC.score), 2) 中等率,
+	ROUND(COUNT(CASE WHEN SC.score>=80 AND SC.score<90 THEN 1 ELSE 0 END)/COUNT(SC.score), 2) 优良率,
+	ROUND(COUNT(CASE WHEN SC.score>=90 THEN 1 ELSE 0 END)/COUNT(SC.score), 2) 优秀率,	
+FROM SC INNER JOIN Course c
+ON SC.CId=c.CId
+GROUP BY SC.CId
+ORDER BY 选修人数 DESC,课程号
