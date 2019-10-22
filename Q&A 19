@@ -1,0 +1,5 @@
+查询每门课程被选修的学生数
+
+SELECT CId,COUNT(SId)
+FROM SC
+GROUP BY CId
