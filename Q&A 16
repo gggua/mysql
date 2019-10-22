@@ -1,0 +1,16 @@
+16 查询学生的总成绩，并进行排名，总分重复时保留名次空缺
+SELECT s1.sum_score,COUNT(s2.sum_score)+1 AS rank
+FROM (SELECT SUM(SC.score) as sum_score FROM SC GROUP BY SC.SId) s1,
+	(SELECT SUM(SC.score) as sum_score FROM SC GROUP BY SC.SId) s2
+WHERE s1.SId=s2.SId AND s2.score>s1.score
+GROUP BY s1.SId
+ORDER BY rank DESC
+
+16.1查询学生的总成绩，并进行排名，总分重复时不保留名次空缺
+
+SELECT s1.sum_score,COUNT(DISTINCT s2.sum_score)+1 AS rank
+FROM (SELECT SUM(SC.score) as sum_score FROM SC GROUP BY SC.SId) s1,
+	(SELECT SUM(SC.score) as sum_score FROM SC GROUP BY SC.SId) s2
+WHERE s1.SId=s2.SId AND s2.score>s1.score
+GROUP BY s1.SId
+ORDER BY rank DESC
