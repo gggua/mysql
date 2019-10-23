@@ -1,0 +1,12 @@
+查询同名学生名单，并统计同名人数
+
+SELECT s1.*,COUNT(*)
+FROM Student s1,Student s2
+WHERE s1.Sname=s2.Sname AND s1.SId!=s2.SId
+GROUP BY s1.Sname
+
+#################################################
+SELECT *,COUNT(*)
+FROM Student
+GROUP BY Sname
+HAVING COUNT(*)>1
