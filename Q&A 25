@@ -1,0 +1,6 @@
+查询每门课程的平均成绩，结果按平均成绩降序排列，平均成绩相同时，按课程编号升序排列
+
+SELECT CId,AVG(SC.score) AS avg_score
+FROM SC
+GROUP BY CId
+ORDER BY avg_score DESC,CId
