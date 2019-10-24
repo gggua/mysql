@@ -1,0 +1,6 @@
+查询任何一门课程成绩在 70 分以上的姓名、课程名称和分数
+
+SELECT s.Sname,SC.CId,SC.score
+FROM Student s INNER JOIN SC
+ON s.SId=SC.SId
+WHERE SC.score>70
