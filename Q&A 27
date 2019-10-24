@@ -1,0 +1,7 @@
+查询课程名称为「数学」，且分数低于 60 的学生姓名和分数
+
+SELECT c.Cname,s.Sname,SC.score
+FROM Student s INNER JOIN SC
+ON s.SId=SC.SId INNER JOIN Course c
+ON SC.CId=c.CId AND c.Cname="数学" 
+WHERE SC.score<60
