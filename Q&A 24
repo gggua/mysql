@@ -1,0 +1,5 @@
+查询 1990 年出生的学生名单
+
+SELECT *
+FROM Student
+WHERE YEAR(Sage)=1990
